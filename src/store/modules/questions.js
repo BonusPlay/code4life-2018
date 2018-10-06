@@ -1,15 +1,6 @@
 import * as types from '../mutation-types';
 import router from '../../router';
-
-class Question {
-	constructor(id, text, questions, submitAnswer) {
-		this.id = id;
-		this.text = text;
-		this.questions = questions;
-		this.submitAnswer = submitAnswer;
-		this.answers = [];
-	}
-}
+import Question from '../../models/Question';
 
 const state = {
 	question_list: [
@@ -66,10 +57,8 @@ const state = {
 };
 
 const getters = {
-	question: state => id => state.question_list.find(question => {
-		question.id = id;
-	}),
-	score: state => state.score
+	questions: state => state.question_list,
+	score: state => state.score,
 };
 
 const actions = {

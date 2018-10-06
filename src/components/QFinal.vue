@@ -1,10 +1,10 @@
 <template>
-	<router-view/>
+	
 </template>
 
 <script>
 	export default {
-		name: "Questionare"
+		name: "QFinal"
 	}
 </script>
 
