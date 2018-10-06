@@ -11,31 +11,26 @@
 
 
 					<v-card-text>
-						<v-form v-if="this.question.questions.length > 0">
-							{{this.question.text}}
-
-							<v-switch v-for="(q, index) in question.questions" :key="q" v-model="question.answers[index]"/>
-
-							<v-text-field v-model="question.comment" label="Uwagi"/>
-						</v-form>
-
-						<v-form v-else>
-							{{this.question.text}}
+						<v-form>
+							<p class="display-2">{{this.question.text}}</p>
+							<v-switch v-if="question.questions.length > 0"
+									  v-for="(q, index) in question.questions"
+									  :key="q"
+									  v-model="answers[index]"
+									  :label="q"
+									  @change="on_change"/>
 							<v-text-field v-model="question.comment" label="Uwagi"/>
 						</v-form>
 					</v-card-text>
 
 
 					<v-card-actions>
-						<div v-if="this.question.questions.length > 0">
-							<v-spacer/>
-							<v-btn v-on:click="go_back">Powrót</v-btn>
-							<v-btn v-on:click="go_next" color="primary">Dalej</v-btn>
-						</div>
-
-						<div v-else>
-							<v-btn color="success">Tak</v-btn>
-							<v-btn color="error">Nie</v-btn>
+						<v-btn v-on:click="go_back">Powrót</v-btn>
+						<v-btn v-if="this.question.id < this.last_question" v-on:click="go_next" color="primary">Dalej</v-btn>
+						<v-spacer/>
+						<div v-if="this.question.questions.length === 0">
+							<v-btn @click="answers[0] = true; on_change(); go_next()" color="success">Tak</v-btn>
+							<v-btn @click="go_next()" color="error">Nie</v-btn>
 						</div>
 					</v-card-actions>
 				</v-card>
@@ -46,6 +41,7 @@
 
 <script>
 	import Question from '../models/Question';
+	import * as types from '../store/mutation-types';
 
 	export default {
 		name: "Question",
@@ -66,15 +62,28 @@
 			},
 			go_next() {
 				this.question.getNext();
+			},
+			on_change() {
+				this.$store.commit(types.UPDATE_ANSWERS, {id: this.question.id, answers: this.answers});
 			}
 		},
 		computed: {
-			progress: function () {
+			progress () {
 				return this.question.id[0] * 5; // /20 * 100
+			},
+			last_question() {
+				return this.$store.getters.last_question;
+			},
+			answers: {
+				get() {
+					return [...this.question.answers];
+				}
 			}
 		},
 		watch: {
 			'$route.params.id'(newId) {
+				if (newId > this.last_question)
+					this.$store.commit(types.SET_LAST_QUESTION, newId);
 				this.fetch_question(newId);
 			}
 		}

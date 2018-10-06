@@ -3,6 +3,7 @@ import router from '../../router';
 import Question from '../../models/Question';
 
 const state = {
+	last_question: 0,
 	question_list: [
 		new Question("1",
 			"Jeśli wskaże Pan/Pani ręką na jakiś obiekt w pokoju, to czy wtedy ___________ na niego spojrzy?",
@@ -254,26 +255,24 @@ const state = {
 			function () {
 				return this.answers[0];
 			})
-	],
-	score: 0
+	]
 };
 
 const getters = {
 	question: state => id => state.question_list.filter(q => {
 		return q.id === id
 	})[0],
-	score: state => state.score,
+	last_question: state => state.last_question
 };
 
-const actions = {
-	incrementScore({commit}) {
-		commit(types.INCREMENT_SCORE);
-	}
-};
+const actions = {};
 
 const mutations = {
-	[types.INCREMENT_SCORE](state) {
-		state.score++;
+	[types.UPDATE_ANSWERS] (state, {id, answers}) {
+		state.question_list.filter(obj => obj.id === id)[0].answers = answers;
+	},
+	[types.SET_LAST_QUESTION] (state, value) {
+		state.last_question = value;
 	}
 };
 

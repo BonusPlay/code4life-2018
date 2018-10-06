@@ -1,2 +1,2 @@
-// export const SET_APP = 'SET_APP';
-export const INCREMENT_SCORE = 'INCREMENT SCORE';
+export const UPDATE_ANSWERS = 'UPDATE_ANSWERS';
+export const SET_LAST_QUESTION = 'SET_LAST_QUESTION';
