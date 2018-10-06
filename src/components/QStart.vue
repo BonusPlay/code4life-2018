@@ -1,12 +1,13 @@
 <template>
 	<div>
-		contact
+		Pre-Questionnaire info here
+		<v-btn to="/">Go Back</v-btn>
 	</div>
 </template>
 
 <script>
 	export default {
-		name: "Contact",
+		name: "QStart"
 	}
 </script>
 

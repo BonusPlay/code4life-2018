@@ -7,7 +7,7 @@
 		</v-toolbar-items>
 		<v-spacer/>
 		<v-toolbar-items class="hidden-sm-and-down">
-			<v-btn color="success">Przejdz do testu</v-btn>
+			<v-btn color="success" to="/questionnaire/start">Przejdz do testu</v-btn>
 		</v-toolbar-items>
 	</v-toolbar>
 </template>
