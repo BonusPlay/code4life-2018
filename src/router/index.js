@@ -5,7 +5,6 @@ Vue.use(Router);
 
 import Main from '../components/Main';
 import Home from '../components/Home';
-import Contact from '../components/Contact';
 import Questionnaire from '../components/Questionnaire';
 import Question from '../components/Question';
 import QStart from '../components/QStart';
@@ -17,13 +16,9 @@ export default new Router({
 			component: Main,
 			children: [
 				{
-					path: 'home',
+					path: '',
 					component: Home
 				},
-				{
-					path: 'contact',
-					component: Contact
-				}
 			]
 		},
 		{

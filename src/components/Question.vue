@@ -6,7 +6,7 @@
 
 				<v-card class="elevation-12">
 					<v-toolbar dark color="primary">
-						<v-toolbar-title>Pytanie {{this.question.id}}</v-toolbar-title>
+						<v-toolbar-title>Pytanie {{this.question.id}}/20</v-toolbar-title>
 					</v-toolbar>
 
 

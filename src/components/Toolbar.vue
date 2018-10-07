@@ -1,22 +1,28 @@
 <template>
-	<v-toolbar>
-		<v-toolbar-items class="hidden-sm-and-down">
-			<v-btn flat to="/home">Strong glowna</v-btn>
-			<v-btn flat to="/contact">Kontakt</v-btn>
-		</v-toolbar-items>
-		<v-spacer/>
-		<v-toolbar-items class="hidden-sm-and-down">
-			<v-btn color="success" to="/questionnaire/start">Przejdz do testu</v-btn>
-		</v-toolbar-items>
+	<v-toolbar color="#4d4d4b">
+		<v-img :src="logo"
+			   height="160"
+			   width="160"
+			   contain=true
+			   position="30% 50%"/>
 	</v-toolbar>
 </template>
 
 <script>
+	import logo from '../assets/logo.png';
+
 	export default {
-		name: "Toolbar"
+		name: "Toolbar",
+		data() {
+			return {
+				logo: logo
+			}
+		}
 	}
 </script>
 
 <style scoped>
-
+	#logo {
+		z-index: 99 !important;
+	}
 </style>
