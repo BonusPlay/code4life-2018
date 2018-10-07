@@ -13,20 +13,28 @@
 					<v-card-text>
 						<v-form>
 							<p class="display-2">{{this.question.text}}</p>
-							<v-switch v-if="question.questions.length > 0"
-									  v-for="(q, index) in question.questions"
-									  :key="q"
-									  v-model="answers[index]"
-									  :label="q"
-									  @change="on_change"/>
-							<v-text-field v-model="question.comment" label="Uwagi"/>
+							<v-radio-group v-if="question.questions.length > 0"
+										   v-for="(q, index) in question.questions"
+										   :key="q"
+										   :label="q"
+										   v-model="answers[index]"
+										   @change="on_change"
+										   row>
+								<v-spacer/>
+								<v-radio label="TAK" color="success" value="true"/>
+								<v-radio label="NIE" color="error" value="false"/>
+							</v-radio-group>
+							<v-text-field v-model="comment" label="Uwagi"/>
 						</v-form>
 					</v-card-text>
 
 
 					<v-card-actions>
-						<v-btn v-on:click="go_back">Powrót</v-btn>
-						<v-btn v-if="this.question.id < this.last_question" v-on:click="go_next" color="primary">Dalej</v-btn>
+						<v-btn v-on:click="go_back">
+							<v-icon>arrow_back</v-icon>
+							Powrót
+						</v-btn>
+						<v-btn v-if="show_next()" v-on:click="go_next" color="primary">Dalej</v-btn>
 						<v-spacer/>
 						<div v-if="this.question.questions.length === 0">
 							<v-btn @click="answers[0] = true; on_change(); go_next()" color="success">Tak</v-btn>
@@ -57,6 +65,11 @@
 			fetch_question(id) {
 				this.question = this.$store.getters.question(id);
 			},
+			show_next() {
+				if (this.question.id < this.last_question)
+					return true;
+				return !this.answers.includes(null);
+			},
 			go_back() {
 				this.$router.go(-1);
 			},
@@ -77,6 +90,14 @@
 			answers: {
 				get() {
 					return [...this.question.answers];
+				}
+			},
+			comment: {
+				get() {
+					return this.question.comment
+				},
+				set(value) {
+					this.$store.commit(types.SET_COMMENT, {id: this.question.id, comment: value});
 				}
 			}
 		},

@@ -269,10 +269,13 @@ const actions = {};
 
 const mutations = {
 	[types.UPDATE_ANSWERS] (state, {id, answers}) {
-		state.question_list.filter(obj => obj.id === id)[0].answers = answers;
+		state.question_list.filter(q => q.id === id)[0].answers = answers;
 	},
 	[types.SET_LAST_QUESTION] (state, value) {
 		state.last_question = value;
+	},
+	[types.SET_COMMENT] (state, {id, comment}) {
+		state.question_list.filter(q => q.id === id)[0].comment = comment;
 	}
 };
 

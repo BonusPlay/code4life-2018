@@ -5,7 +5,7 @@ export default class Question {
 		this.questions = questions;
 		this.getNext = getNext;
 		this.calculateScore = calculateScore;
-		this.answers = (questions.length === 0) ? [false] : questions.map(() => false);
+		this.answers = (questions.length === 0) ? [null] : questions.map(() => null);
 		this.comment = "";
 	}
 }
