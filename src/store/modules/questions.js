@@ -12,7 +12,13 @@ const getters = {
 	last_question: state => state.last_question
 };
 
-const actions = {};
+const actions = {
+	sanitize ({commit, state}) {
+		state.question_list.forEach(q => {
+			commit(types.UPDATE_ANSWERS, {id: q.id, answers: q.answers.map(a => JSON.parse(a))});
+		})
+	}
+};
 
 const mutations = {
 	[types.UPDATE_ANSWERS](state, {id, answers}) {

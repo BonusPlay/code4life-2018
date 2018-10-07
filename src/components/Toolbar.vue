@@ -1,10 +1,10 @@
 <template>
 	<v-toolbar color="#4d4d4b">
-		<v-img :src="logo"
-			   height="160"
-			   width="160"
-			   contain=true
-			   position="30% 50%"/>
+			<v-img :src="logo"
+				   height="160"
+				   width="160"
+				   :contain="true"
+				   position="30% 50%"/>
 	</v-toolbar>
 </template>
 

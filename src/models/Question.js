@@ -14,7 +14,7 @@ class Question {
 
 const QList = [
 	new Question("1",
-		"Jeśli wskaże Pan/Pani ręką na jakiś obiekt w pokoju, to czy wtedy ___________ na niego spojrzy?",
+		"Jeśli wskaże Pan/Pani ręką na jakiś obiekt w pokoju, to czy wtedy dziecko na niego spojrzy?",
 		[
 			"Patrzy na obiekt",
 			"Wskazuje obiekt",
@@ -91,7 +91,10 @@ const QList = [
 			router.push("6");
 		},
 		function () {
-			return !this.answers[0];
+			if (this.answers[0] === null)
+				return false;
+			else
+				return !this.answers[0];
 		}),
 	new Question("6",
 		"Czy dziecko wskazuje palcem aby o coś poprosić lub uzyskać pomoc?",
@@ -129,7 +132,7 @@ const QList = [
 			router.push("7");
 		},
 		function () {
-			return this.answers[0];
+			return !!this.answers[0];
 		}),
 	new Question("7",
 		"Czy dziecko chce aby Pan/Pani zobaczył/a coś, co je zainteresowało, np.",
@@ -192,7 +195,10 @@ const QList = [
 				router.push("9")
 		},
 		function () {
-			return !this.answers[0];
+			if (this.answers[0] === null)
+				return false;
+			else
+				return !this.answers[0];
 		}),
 	new Question('8c',
 		"Czy Pana/Pani dziecko:",
@@ -212,7 +218,10 @@ const QList = [
 				router.push("9");
 		},
 		function () {
-			return !this.answers.includes(true);
+			if (this.answers[0] === null)
+				return false;
+			else
+				return !this.answers.includes(true);
 		}),
 	new Question('8d',
 		"Czy reaguje na inne dzieci przez ponad połowę wspólnie spędzonego czasu?",
@@ -221,7 +230,10 @@ const QList = [
 			router.push("9");
 		},
 		function () {
-			return !this.answers[0];
+			if (this.answers[0] === null)
+				return false;
+			else
+				return !this.answers[0];
 		}),
 	new Question("9",
 		"Czy dziecko czasami przynosi Panu/Pani…",
@@ -249,11 +261,10 @@ const QList = [
 			router.push("11");
 		},
 		function () {
-			return this.answers[0];
+			return !!this.answers[0];
 		}),
 	new Question("10",
-		"Czy \n" +
-		"___________ reaguje, gdy woła go/ją Pan/Pani po imieniu?",
+		"Czy dziecko reaguje, gdy woła go/ją Pan/Pani po imieniu?",
 		[
 			"Podnosi głowę?",
 			"Mówi lub gaworzy?",
@@ -270,7 +281,7 @@ const QList = [
 			return this.answers.slice(0, 3).filter(x => x).length - this.answers.slice(3, 7).filter(x => x).length <= 0;
 		}),
 	new Question("11",
-		"Gdy uśmiechasz się do ____________, czy on/ona również odpowiada uśmiechem?",
+		"Gdy uśmiechasz się do dziecko, czy on/ona również odpowiada uśmiechem?",
 		[
 			"Uśmiecha się, gdy Pan/Pani się uśmiecha?",
 			"Uśmiecha się, gdy Pan/Pani wchodzi do pokoju?",
@@ -286,7 +297,7 @@ const QList = [
 			return this.answers.slice(0, 3).filter(x => x).length - this.answers.slice(3, 6).filter(x => x).length <= 0;
 		}),
 	new Question("12",
-		"Czy ____________ bywa rozdrażniony/a z powodu codziennych głośnych dźwięków?",
+		"Czy dziecko bywa rozdrażniony/a z powodu codziennych głośnych dźwięków?",
 		[],
 		function () {
 			if (this.answers[0])
@@ -343,7 +354,7 @@ const QList = [
 			router.push("14");
 		},
 		function () {
-			return this.answers[0];
+			return !this.answers[0];
 		}),
 	new Question("14",
 		"Czy patrzy Panu/Pani w oczy… ",
@@ -374,7 +385,10 @@ const QList = [
 				router.push("15");
 		},
 		function () {
-			return !this.answers[0];
+			if (this.answers[0] === null)
+				return false;
+			else
+				return !this.answers[0];
 		}),
 	new Question("14c",
 		"Gdy spędzacie ze sobą cały dzień, czy przez ten czas dziecko patrzy Panu/Pani w oczy przynajmniej 5 razy?",
@@ -383,7 +397,10 @@ const QList = [
 			router.push("15");
 		},
 		function () {
-			return !this.answers[0];
+			if (this.answers[0] === null)
+				return false;
+			else
+				return !this.answers[0];
 		}),
 	new Question("15",
 		"Czy dziecko próbuje Pana/ Panią naśladować, gdy Pan/Pani…",
@@ -403,7 +420,7 @@ const QList = [
 			return this.answers.filter(x => x).length < 2;
 		}),
 	new Question("16",
-		"Jeśli przekręca Pan/Pani głowę, by na coś spojrzeć, czy ____________ również się odwraca, by sprawdzić, na co Pan/Pani patrzy?",
+		"Jeśli przekręca Pan/Pani głowę, by na coś spojrzeć, czy dziecko również się odwraca, by sprawdzić, na co Pan/Pani patrzy?",
 		[],
 		function () {
 			if (this.answers[0])
@@ -427,7 +444,10 @@ const QList = [
 			router.push("17");
 		},
 		function () {
-			return this.answers.slice(0, 3).filter(x => x).length - this.answers.slice(3, 5).filter(x => x).length <= 0;
+			if (this.answers[0] === null)
+				return false;
+			else
+				return this.answers.slice(0, 3).filter(x => x).length - this.answers.slice(3, 5).filter(x => x).length <= 0;
 		}),
 	new Question("17",
 		"Czy dziecko…",
@@ -466,7 +486,10 @@ const QList = [
 				router.push("19");
 		},
 		function () {
-			return !this.answers[0];
+			if (this.answers[0] === null)
+				return false;
+			else
+				return !this.answers[0];
 		}),
 	new Question("18c",
 		"Gdy nie ma żadnych podpowiedzi w związku z kontekstem sytuacji, to czy wtedy dziecko potrafi wykonać polecenie? Na przykład…",
@@ -483,7 +506,7 @@ const QList = [
 		}
 	),
 	new Question("19",
-		"Jeśli dzieje się coś nowego, to czy ___________ patrzy na Pana/Pani twarz, aby sprawdzić jak Pan/Pani na to reaguje?",
+		"Jeśli dzieje się coś nowego, to czy dziecko patrzy na Pana/Pani twarz, aby sprawdzić jak Pan/Pani na to reaguje?",
 		[],
 		function () {
 			if (this.answers[0])
@@ -513,10 +536,13 @@ const QList = [
 			router.push("20");
 		},
 		function () {
-			return !this.answers[0];
+			if (this.answers[0] === null)
+				return false;
+			else
+				return !this.answers[0];
 		}),
 	new Question("20",
-		"Czy ____________ lubi aktywności ruchowe?",
+		"Czy dziecko lubi aktywności ruchowe?",
 		[],
 		function () {
 			if (this.answers[0])
@@ -551,7 +577,10 @@ const QList = [
 			router.push("result");
 		},
 		function () {
-			return !this.answers.includes(true);
+			if (this.answers[0] === null)
+				return false;
+			else
+				return !this.answers.includes(true);
 		})
 ];
 

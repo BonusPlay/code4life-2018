@@ -28,6 +28,7 @@
 						<v-spacer/>
 						<v-btn @click="$router.go(-1)" color="error">Powrót</v-btn>
 						<v-btn to="1" color="success">Wykonaj test</v-btn>
+						<v-spacer/>
 					</v-card-actions>
 				</v-card>
 			</v-flex>

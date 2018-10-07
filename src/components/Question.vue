@@ -1,7 +1,7 @@
 <template>
 	<v-container fluid fill-height>
 		<v-layout align-center justify-center>
-			<v-flex xs12 sm8 md4>
+			<v-flex xs12 sm10 md8>
 				<v-progress-linear color="success" height="20px" :value="progress"/>
 
 				<v-card class="elevation-12">
@@ -12,7 +12,7 @@
 
 					<v-card-text>
 						<v-form>
-							<p class="display-2">{{this.question.text}}</p>
+							<p class="display-1">{{this.question.text}}</p>
 							<v-radio-group v-if="question.questions.length > 0"
 										   v-for="(q, index) in question.questions"
 										   :key="q"
@@ -24,7 +24,11 @@
 								<v-radio label="TAK" color="success" value="true"/>
 								<v-radio label="NIE" color="error" value="false"/>
 							</v-radio-group>
-							<v-text-field v-model="comment" label="Uwagi"/>
+							<div v-else>
+								<v-btn @click="answers[0] = true; on_change(); go_next()" color="success">Tak</v-btn>
+								<v-btn @click="go_next()" color="error">Nie</v-btn>
+							</div>
+							<v-text-field v-model="comment" label="Dodatkowe komentarze na temat pytania"/>
 						</v-form>
 					</v-card-text>
 
@@ -36,10 +40,6 @@
 						</v-btn>
 						<v-btn v-if="show_next()" v-on:click="go_next" color="primary">Dalej</v-btn>
 						<v-spacer/>
-						<div v-if="this.question.questions.length === 0">
-							<v-btn @click="answers[0] = true; on_change(); go_next()" color="success">Tak</v-btn>
-							<v-btn @click="go_next()" color="error">Nie</v-btn>
-						</div>
 					</v-card-actions>
 				</v-card>
 			</v-flex>
