@@ -3,17 +3,18 @@
 
 
 		<v-img :src="splash">
-			<div style="height: 75px; background-color: #4d4d4b;"></div>
+			<div style="height: 65px; background-color: #4d4d4b;"></div>
 			<v-img :src="logo"
 				   height="120"
 				   width="120"
 				   style="margin-left: 20%; top: -15%;"/>
-			<v-layout class="hidden-sm-and-down" align-start justify-center column >
+			<v-layout class="hidden-sm-and-down" align-start justify-center column>
 
-				<v-flex md-3 offset-md1 style="background-color: aqua;">
+				<v-flex md-3 offset-md1
+						style="background-color: rgba(255, 255, 255, 0.7); padding: 5px; border-radius: 3% 6%;">
 
-					<p  style="float: left; font-size: 1.5em;" >Test wczesnego wykrycia autyzmu</p>
-					<br>
+					<p style="font-size: 2em; margin-bottom: 0;">Test wczesnego</p>
+					<p style="font-size: 2em; margin-bottom: 0;"> wykrycia autyzmu</p>
 					<v-btn to="/questionnaire/start" :large=true color="success" style="float: left;">
 						Wykonaj Darmowy Test
 						<v-icon>arrow_forward</v-icon>
@@ -25,15 +26,14 @@
 		<v-container>
 			<v-layout>
 				<v-flex s12 md6>
-					<v-img :src="logo"/>
+					<v-img :src="kids" style="max-width: 500px;"/>
 				</v-flex>
-				<v-flex s12 md6 class="text-md-center">
-					<p class="display-3">Test wczesnego wykrycia autyzmu</p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-					et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-					culpa qui officia deserunt mollit anim id est laborum.
+				<v-flex s12 md6  class="text-md-center">
+					<p class="display-3">O TEŚCIE</p>
+					<p>Każde dziecko rozwija się inaczej, ma inne potrzeby i inaczej odbiera świat. Jednak pewne sygnały, które rodzice obserwują u swoich dzieci mogą sugerować poważne problemy.</p>
+					<p>Sprawdź czy Twoje dziecko może mieć spektrum autyzmu. Rozwiąż krótki test, który zweryfikuje Twoje przypuszczenia i podpowie czy zachowania Twojego malucha są odpowiednie dla jego wieku i etapu rozwoju. Pamiętaj, że badanie nie jest pełną diagnozą, a jedynie wskazówką czy powinieneś skonsultować się ze specjalistą.</p>
+					<p>Bez względu na wynik, pamiętaj, że musisz potwierdzić informację u specjalistów.</p>
+
 					<br>
 					<v-btn to="/questionnaire/start" :large=true color="success">
 						Wykonaj Darmowy Test
@@ -69,6 +69,7 @@
 <script>
 	import splash from "../assets/splash.jpg";
 	import logo from "../assets/logo.png";
+	import kids from "../assets/kid2.jpg";
 	import GMapInfo from './GMapInfo';
 
 	export default {
@@ -77,6 +78,7 @@
 			return {
 				splash: splash,
 				logo: logo,
+				kids: kids,
 				mapZoom: 5,
 				institutes: null,
 				selected: 6
