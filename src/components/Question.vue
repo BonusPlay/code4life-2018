@@ -1,5 +1,5 @@
 <template>
-	<v-container fluid fill-height>
+	<v-container fluid fill-height >
 		<v-layout align-center justify-center>
 			<v-flex xs12 sm10 md8>
 				<v-progress-linear color="success" height="20px" :value="progress"/>
@@ -24,10 +24,15 @@
 								<v-radio label="TAK" color="success" value="true"/>
 								<v-radio label="NIE" color="error" value="false"/>
 							</v-radio-group>
-							<div v-else>
-								<v-btn @click="answers[0] = true; on_change(); go_next()" color="success">Tak</v-btn>
-								<v-btn @click="go_next()" color="error">Nie</v-btn>
-							</div>
+							<v-radio-group v-if="question.questions.length === 0"
+										   v-model="answers[0]"
+										   @change="on_change"
+										   row style="transform: scale(1.5, 1.5); margin-top: 5%">
+								<v-spacer/>
+								<v-radio label="TAK" color="success" value="true"/>
+								<v-radio label="NIE" color="error" value="false"/>
+								<v-spacer/>
+							</v-radio-group>
 							<v-text-field v-model="comment" label="Dodatkowe komentarze na temat pytania"/>
 						</v-form>
 					</v-card-text>
@@ -38,8 +43,14 @@
 							<v-icon>arrow_back</v-icon>
 							Powrót
 						</v-btn>
-						<v-btn v-if="show_next()" v-on:click="go_next" color="primary">Dalej</v-btn>
 						<v-spacer/>
+						<v-btn
+							:disabled="!show_next()"
+							@click="go_next"
+							color="primary">
+							Dalej
+							<v-icon>arrow_forward</v-icon>
+						</v-btn>
 					</v-card-actions>
 				</v-card>
 			</v-flex>
@@ -81,7 +92,7 @@
 			}
 		},
 		computed: {
-			progress () {
+			progress() {
 				return this.question.id.replace(/\D/g, '') * 5; // /20 * 100
 			},
 			last_question() {
@@ -106,6 +117,7 @@
 				if (newId > this.last_question)
 					this.$store.commit(types.SET_LAST_QUESTION, newId);
 				this.fetch_question(newId);
+				window.scroll(0, 0);
 			}
 		}
 	}

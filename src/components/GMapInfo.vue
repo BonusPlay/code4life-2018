@@ -2,7 +2,7 @@
 	<v-card>
 		<v-card-title primary-title>
 			<v-container>
-				<h3 class="headline mb-0">{{institute.name}}</h3>
+				<h2>{{institute.name}}</h2>
 				<v-layout>
 					<v-icon>location_on</v-icon>
 					{{institute.address}}
@@ -15,7 +15,6 @@
 		</v-card-title>
 
 		<v-card-actions>
-			<v-spacer/>
 			<v-btn :href="institute.website" flat color="info">
 				<v-icon>link</v-icon>
 				strona internetowa
