@@ -8,6 +8,7 @@ import Home from '../components/Home';
 import Questionnaire from '../components/Questionnaire';
 import Question from '../components/Question';
 import QStart from '../components/QStart';
+import QResult from '../components/QResult';
 
 export default new Router({
 	routes: [
@@ -28,6 +29,10 @@ export default new Router({
 				{
 					path: 'start',
 					component: QStart
+				},
+				{
+					path: 'result',
+					component: QResult
 				},
 				{
 					path: ':id',

@@ -82,7 +82,7 @@
 		},
 		computed: {
 			progress () {
-				return this.question.id[0] * 5; // /20 * 100
+				return this.question.id.replace(/\D/g, '') * 5; // /20 * 100
 			},
 			last_question() {
 				return this.$store.getters.last_question;

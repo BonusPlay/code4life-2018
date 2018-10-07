@@ -6,7 +6,7 @@
 
 <script>
 	export default {
-		name: "QFinal",
+		name: "QResult",
 		computed: {
 			calc_score: function() {
 				const answers = this.$store.getters.questions.map(question => question.calculateScore());
