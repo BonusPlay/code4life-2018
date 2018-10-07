@@ -1,17 +1,20 @@
 import * as types from '../mutation-types';
-import {IList} from '../../models/Institute';
 
 const state = {
-	institute_list: IList
+	allow_cookies: false
 };
 
 const getters = {
-	institutes: state => state.institute_list
+	allow_cookies: state => state.allow_cookies
 };
 
 const actions = {};
 
-const mutations = {};
+const mutations = {
+	[types.ALLOW_COOKIES] (state) {
+		state.allow_cookies = true;
+	}
+};
 
 export default {
 	state,

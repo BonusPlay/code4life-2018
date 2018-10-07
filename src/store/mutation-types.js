@@ -1,3 +1,4 @@
 export const UPDATE_ANSWERS = 'UPDATE_ANSWERS';
 export const SET_LAST_QUESTION = 'SET_LAST_QUESTION';
 export const SET_COMMENT = 'SET_COMMENT';
+export const ALLOW_COOKIES = 'ALLOW_COOKIES';

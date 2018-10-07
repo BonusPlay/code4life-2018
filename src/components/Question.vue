@@ -1,5 +1,5 @@
 <template>
-	<v-container fluid fill-height >
+	<v-container fluid fill-height>
 		<v-layout align-center justify-center>
 			<v-flex xs12 sm10 md8>
 				<v-progress-linear color="success" height="20px" :value="progress"/>
@@ -71,6 +71,8 @@
 		},
 		created() {
 			this.fetch_question(this.$route.params.id);
+			if (this.$cookies.isKey('allow_cookies'))
+				this.load_cookie();
 		},
 		methods: {
 			fetch_question(id) {
@@ -89,6 +91,19 @@
 			},
 			on_change() {
 				this.$store.commit(types.UPDATE_ANSWERS, {id: this.question.id, answers: this.answers});
+				if(this.allow_cookies)
+				{
+					this.$store.getters.questions.forEach(q => {
+						this.$cookies.set(q.id, JSON.stringify(q.answers));
+					});
+				}
+			},
+			load_cookie() {
+				this.$store.commit(types.ALLOW_COOKIES);
+				this.$store.getters.questions.forEach(q => {
+					if (this.$cookies.isKey(q.id))
+						this.$store.commit(types.UPDATE_ANSWERS, {id: q.id, answers: JSON.parse(this.$cookies.get(q.id))});
+				});
 			}
 		},
 		computed: {
@@ -97,6 +112,9 @@
 			},
 			last_question() {
 				return this.$store.getters.last_question;
+			},
+			allow_cookies() {
+				return this.$store.getters.allow_cookies;
 			},
 			answers: {
 				get() {
